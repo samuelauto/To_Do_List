@@ -1,29 +1,41 @@
 //Objeto tarea con todos sus metodos(CRUD)
 
-function Task(title,dateCreate,dateFinish,description,importanceLevel,project,complete){
-    this.title = title;
-    this.dateCreate = dateCreate;
-    this.dateFinish = dateFinish;
-    this.description = description;
-    this.importanceLevel = importanceLevel;
-    this.project = project;
-    this.complete = complete;
+//importanceLabel va a ser un radio buttom
 
-    const getTitle = () => this.title;
-    const getDateCreate = () => this.dateCreate;
-    const getDateFinish = () => this.dateFinish;
-    const getDescription = () => this.description;
-    const getImportanceLevel = () => this.importanceLevel;
-    const getProject = () => this.project;
-    const getComplete = () => this.complete;
+class Task {
+    constructor(title, dateCreate, dateFinish, description, importanceLevel, project, complete) {
+        this.title = title;
+        this.dateCreate = dateCreate;
+        this.dateFinish = dateFinish;
+        this.description = description;
+        this.importanceLevel = importanceLevel;
+        this.complete = complete;
 
-    const setDateFinish = (newDateFinish) => this.dateFinish = newDateFinish;
-    const setImportanceLevel = (newImportanceLevel) => this.importanceLevel = newImportanceLevel;
-    const setProject = (newProject) => this.project = newProject;
-    const setComplete = (newComplete) => this.complete = newComplete;
+        if(project === ""){
+            this.project = "Predeterminado"
+        }
+        else{
+            this.project = project
+        }
+    }
 
-    return{getTitle,getDateCreate,getDateFinish,getDescription,getImportanceLevel,getProject,getComplete,setDateFinish,setProject,setComplete,setImportanceLevel}
+    getTitle() {this.title;} 
+    getDateCreate() {this.dateCreate;} 
+    getDateFinish() {this.dateFinish;} 
+    getDescription() {this.description;} 
+    getImportanceLevel() {this.importanceLevel;} 
+    getProject() {this.project;} 
+    getComplete() {this.complete;} 
 
+    setDateFinish(newDateFinish) {this.dateFinish = newDateFinish;}     
+    setImportanceLevel(newImportanceLevel) {this.importanceLevel = newImportanceLevel;} 
+    setProject(newProject) {this.project = newProject;} 
+    setComplete(newComplete) {this.complete = newComplete;} 
+
+    static fromObject (task){
+        return new Task(task.title, task.dateCreate, task.dateFinish, task.description, task.importanceLevel, task.complete,task.project)
+    }
+    
 }
 
 export {Task}
