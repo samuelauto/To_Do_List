@@ -3,57 +3,61 @@
 import { NewTask } from "./dom_new_task";
 import {Task} from "./task";
 
-function Project(title){
-    this.title = title;
-    this.tasks = [];
+function Project(titulo){
+    const title = titulo;
+    const tasks = [];
 
-    const addTask = (task) => {
-        this.tasks.forEach(task => {
-            if (this.task.getDescription() === task.getDescription()){
-                return "La tarea ya se encuentra registrada";
+    const addTask = (task_) => {
+        tasks.forEach(task => {
+            if (task.getDescription() === task_.getDescription()){
+                console.log("La tarea ya se encuentra registrada");
             }
         });
-        this.tasks.push(task);
+        tasks.push(task_);
     };
 
-    const deleteTask = (task) => {
-        this.tasks.forEach(task => {
-            if (this.task.getDescription() === task.getDescription()){
-                this.tasks.splice(this.tasks.indexOf(task), 1);
+    const deleteTask = (task_) => {
+        tasks.forEach(task => {
+            if (task.getDescription() === task_.getDescription()){
+                tasks.splice(tasks.indexOf(task), 1);
             }
         });
     };
 
     const getTasks = () => {
-        this.tasks.forEach(task => {
-            task.getDescription();
-            task.getLevelImportance();
-            task.getDateCreate();
+        tasks.forEach(task => {
+            console.log(task.getDescription());
         })
     };
 
 
     const saveTask = () => {
 
-        localStorage.removeItem(this.title);
+        localStorage.removeItem(title);
 
-        localStorage.setItem(this.title, JSON.stringify(this.tasks));//Aqui se me guardan solamente las propiedades de la clase
+        localStorage.setItem(title, JSON.stringify(tasks));//Aqui se me guardan solamente las propiedades de la clase
     }
 
 
     const chargeTask = () => {
         //NO va a existir caso en que se cargue un proyecto sin alguna tarea adentro
-        //tengo q recuperar el objeto proyectos tambien
-
-
-        let project = JSON.parse(localStorage.getItem(this.title))
+        let tasks_ = JSON.parse(localStorage.getItem(title))
         
-        let tasks = project[title]; //aqui se obtiene todas las tareas
-
-        tasks.forEach(t => Task.fromObject(t)) //se le devuelve a cada elemento sus respectivos metodos
-
-
+        tasks.push(tasks_.forEach(t => Task.fromObjectTask(t).getTitle()))//se le devuelve a cada elemento sus respectivos metodos
 
     }
 
+    //funcion para devolverle las propiedades a un objeto proyecto
+    // function fromObjectProject (project){
+    //     return new Project(project.title);
+    // }
+
+    return {addTask,deleteTask,getTasks,saveTask,chargeTask}
+
 }
+
+function fromObjectProject(title){
+    return new Project(title);
+}   
+
+export {Project,fromObjectProject};

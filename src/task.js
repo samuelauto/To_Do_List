@@ -19,20 +19,20 @@ class Task {
         }
     }
 
-    getTitle() {this.title;} 
-    getDateCreate() {this.dateCreate;} 
-    getDateFinish() {this.dateFinish;} 
-    getDescription() {this.description;} 
-    getImportanceLevel() {this.importanceLevel;} 
-    getProject() {this.project;} 
-    getComplete() {this.complete;} 
+    getTitle() {return console.log(this.title);} 
+    getDateCreate() {return this.dateCreate;} 
+    getDateFinish() {return this.dateFinish;} 
+    getDescription() {return this.description;} 
+    getImportanceLevel() {return this.importanceLevel;} 
+    getProject() {return this.project;} 
+    getComplete() {return this.complete;} 
 
     setDateFinish(newDateFinish) {this.dateFinish = newDateFinish;}     
     setImportanceLevel(newImportanceLevel) {this.importanceLevel = newImportanceLevel;} 
     setProject(newProject) {this.project = newProject;} 
     setComplete(newComplete) {this.complete = newComplete;} 
 
-    static fromObject (task){
+    static fromObjectTask (task){
         return new Task(task.title, task.dateCreate, task.dateFinish, task.description, task.importanceLevel, task.complete,task.project)
     }
     
